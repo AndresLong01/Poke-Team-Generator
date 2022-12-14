@@ -38,4 +38,5 @@ app.use(require('./controllers/'));
 
 app.listen(PORT, () => {
   console.log("Let's catch them all");
+  sequelize.sync({ force: false });
 })
