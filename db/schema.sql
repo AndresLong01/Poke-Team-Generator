@@ -1,0 +1,1 @@
+CREATE DATABASE poke_trainer_db;
