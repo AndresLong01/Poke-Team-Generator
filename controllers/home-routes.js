@@ -8,24 +8,30 @@ router.get('/', async (req, res) => {
   }
 });
 
-//TODO: replace placeholders for login 
+router.get('/dashboard', async (req, res) => {
+  try {
+    res.render('dashboard', {homepage: true});
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
-// router.get('/login', (req, res) => {
-//   if (req.session.loggedIn) {
-//     res.redirect('/');
-//     return;
-//   }
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
 
-//   res.render('login');
-// });
+  res.render('login', {login: true});
+});
 
-// router.get('/signup', (req, res) => {
-//   if (req.session.loggedIn) {
-//     res.redirect('/');
-//     return;
-//   }
+router.get('/signup', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
 
-//   res.render('signup');
-// });
+  res.render('signup', {signup: true});
+});
 
 module.exports = router;

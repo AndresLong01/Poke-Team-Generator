@@ -1,0 +1,16 @@
+<nav>
+  <input type="checkbox" id="check">
+  <label for="check" class="checkbtn">
+    <i class="fas fa-bars"></i>
+  </label>
+  <label class="logo">
+    PTG
+  </label>
+  <ul>
+    <li><a class="{{#if homepage}}active {{else}} {{/if}}" href="/dashboard">Home</a></li>
+    <li><a class="{{#if profile}}active {{else}} {{/if}}" href="/profile">Profile</a></li>
+    <li><a class="{{#if login}}active {{else}} {{/if}}" href="/login">Login</a></li>
+    <li><a class="{{#if signup}}active {{else}} {{/if}}" href="/signup">Sign Up</a></li>
+    <li><a href="#">Logout</a></li>
+  </ul>
+</nav>
