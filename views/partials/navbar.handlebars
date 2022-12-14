@@ -4,13 +4,21 @@
     <i class="fas fa-bars"></i>
   </label>
   <label class="logo">
-    PTG
+    <a class="text-white" href="/">PTG</a>
   </label>
   <ul>
-    <li><a class="{{#if homepage}}active {{else}} {{/if}}" href="/dashboard">Home</a></li>
-    <li><a class="{{#if profile}}active {{else}} {{/if}}" href="/profile">Profile</a></li>
-    <li><a class="{{#if login}}active {{else}} {{/if}}" href="/login">Login</a></li>
-    <li><a class="{{#if signup}}active {{else}} {{/if}}" href="/signup">Sign Up</a></li>
-    <li><a href="#">Logout</a></li>
+    <li><a class="{{#if details.homepage}}active {{else}} {{/if}}" href="/dashboard">Home</a></li>
+    <li><a class="{{#if details.profile}}active {{else}} {{/if}}" href="/profile">Profile</a></li>
+    {{#unless details.loggedIn}}
+      <li><a class="{{#if login}}active {{else}} {{/if}}" href="/login">Login</a></li>
+      <li><a class="{{#if signup}}active {{else}} {{/if}}" href="/signup">Sign Up</a></li>
+    {{/unless}}
+
+    {{#if details.loggedIn}}
+      <li><a href="#" id="logout-link">Logout</a></li>
+    {{/if}}
   </ul>
 </nav>
+{{#if details.loggedIn}}
+  <script src="/js/logout.js"></script>
+{{/if}}

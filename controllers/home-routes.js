@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
@@ -8,9 +9,27 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    res.render('dashboard', {homepage: true});
+    res.render('dashboard', {
+      front: {
+        homepage: true,
+        loggedIn: true
+      }
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/profile', withAuth, async (req, res) => {
+  try {
+    res.render('profile', {
+      front: {
+        homepage: true,
+        loggedIn: true
+      }
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -18,7 +37,7 @@ router.get('/dashboard', async (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
 
@@ -27,7 +46,7 @@ router.get('/login', (req, res) => {
 
 router.get('/signup', (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
 

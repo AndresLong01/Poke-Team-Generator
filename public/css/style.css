@@ -162,6 +162,10 @@ nav {
   width: 100%;
 }
 
+.text-white {
+  color: white;
+}
+
 label.logo {
   color: white;
   font-size: 35px;
@@ -363,18 +367,161 @@ input[type="submit"]:hover {
   transition: .5s;
 }
 
-.signup_link {
+.signup_link,
+.login_link {
   margin: 30px 0;
   text-align: center;
   font-size: 16px;
   color: var(--onyx-black);
 }
 
-.signup_link a {
+.signup_link a,
+.login_link a {
   color: var(--light-red);
   text-decoration: none;
 }
 
-.signup_link a:hover {
+.signup_link a:hover,
+.login_link a:hover {
   text-decoration: underline;
+}
+
+/* Dashboard Section */
+/* search form styling */
+.searchContainer {
+  position: absolute;
+  top: 630px;
+  width: 97%;
+  display: flex;
+  justify-content: center;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+}
+
+#searchForm {
+  background-color: white;
+  width: 50%;
+  height: 50px;
+  display: flex;
+}
+
+#searchForm .searchInput {
+  flex: 1;
+  border: none;
+  outline: none;
+}
+
+#searchForm .searchBtn {
+  background-color: var(--light-red);
+  padding: 15px 50px;
+  border: none;
+  outline: none;
+  color: white;
+}
+
+#searchForm .fa-search {
+  align-self: center;
+  padding: 10px 20px;
+  color: #777;
+}
+
+/* Result cards */
+
+.resultContainer {
+  position: absolute;
+  height: 300px;
+  width: 1000px;
+  top: 195px;
+  left: calc(40% - 300px);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.pokeCard {
+  display: flex;
+  height: 320px;
+  width: 240px;
+  background-color: var(--onyx-black);
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #000;
+  transition: 0.4s ease-out;
+  position: relative;
+  left: 0px;
+}
+
+.pokeCard:not(:first-child) {
+  margin-left: -50px;
+}
+
+.pokeCard:hover {
+  transform: translateY(-20px);
+  transition: 0.4s ease-out;
+}
+
+.pokeCard:hover ~ .pokeCard {
+  position: relative;
+  left: 50px;
+  transition: 0.4s ease-out;
+}
+
+.pokeName {
+  color: white;
+  text-align: center;
+  font-weight: 300;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+}
+
+.imgWrapper {
+  border: solid 1px white;
+  border-radius: 10px;
+  padding: 5px;
+  position: absolute;
+  top: 100px;
+  left: calc(50% - 52.5px);
+}
+
+.addToDB {
+  background-color: var(--light-red);
+  color: white;
+  outline: none;
+  border: none;
+  padding: 10px 40px;
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #000;
+  position: absolute;
+  top: calc(82%);
+  left: calc(30%);
+}
+
+@media (max-width: 1400px) {
+  .resultContainer {
+    width: 900px;
+  }
+}
+
+@media (max-width: 952px) {
+  .resultContainer {
+    left: calc(40% - 330px);
+  }
+}
+
+@media (max-width: 858px) {
+  .resultContainer {
+    justify-content: center;
+    width: 805px;
+    transition: 0.5s;
+  }
+  .pokeCard {
+    width: 180px;
+    transition: 0.5s;
+  }
+  .addToDB {
+    left: calc(25%);
+  }
+  #searchForm {
+    width: 70%;
+    transition: .5s;
+  }
 }
