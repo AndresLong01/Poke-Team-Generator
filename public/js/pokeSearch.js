@@ -54,14 +54,21 @@ const sendToDatabase = async (e) => {
   const pokeName = e.target.dataset.pokename;
   const image = e.target.dataset.image;
 
-  await fetch(`/api/pokemon/`, {
-    method: 'POST',
-    body: JSON.stringify({
-      pokeName,
-      image,
-    }),
-    headers: { 'Content-Type': 'application/json' },
-  });
+  try {
+    await fetch(`/api/pokemon/`, {
+      method: 'POST',
+      body: JSON.stringify({
+        pokeName,
+        image,
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    alert(`Successfully added ${pokeName} to your pokemon list. Check them out in your profile!`);
+  }
+  catch (err) {
+    alert(`Something went wrong adding pokemon ${pokeName} to the db. Fire Andres. Error: ${err}`);
+  }
 }
 
 document.querySelector("#searchForm").addEventListener("submit", searchPokemon);
