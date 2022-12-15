@@ -1,7 +1,15 @@
 {{> navbar details=front}}
 
-<h1>Coming soon: {{user.username}}</h1>
+<div class="profileWrapper">
+  <h1>{{user.username}}'s Pokemon!</h1>
 
-{{#each user.Pokemons}}
-  <h2>{{pokeName}}</h2>
-{{/each}}
+  {{#each user.Pokemons}}
+    <div class="pokeCard">
+      <h3 class="pokeName">{{pokeName}}</h3>
+
+      <div class="imgWrapper">
+        <img src="{{image}}" alt="Searched Pokemon Result" width="100px" height="100px">
+      </div>
+    </div>
+  {{/each}}
+</div>
