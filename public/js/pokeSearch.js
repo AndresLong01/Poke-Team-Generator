@@ -4,7 +4,7 @@ const searchPokemon = (e) => {
   e.preventDefault();
   const query = document.querySelector(".searchInput").value;
 
-  fetch("https://pokeapi.co/api/v2/pokemon/" + query)
+  fetch("https://pokeapi.co/api/v2/pokemon/" + query.toLowerCase())
     .then(result => result.json())
     .then(data => {
       const objectToRender = {
@@ -48,8 +48,20 @@ const renderNewCard = (obj) => {
   }
 }
 
-const sendToDatabase = (e) => {
-  
+const sendToDatabase = async (e) => {
+  e.preventDefault();
+
+  const pokeName = e.target.dataset.pokename;
+  const image = e.target.dataset.image;
+
+  await fetch(`/api/pokemon/`, {
+    method: 'POST',
+    body: JSON.stringify({
+      pokeName,
+      image,
+    }),
+    headers: { 'Content-Type': 'application/json' },
+  });
 }
 
 document.querySelector("#searchForm").addEventListener("submit", searchPokemon);

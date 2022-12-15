@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
+const { User, Pokemon } = require('../models')
 
 router.get('/', async (req, res) => {
   try {
@@ -24,9 +25,19 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
 router.get('/profile', withAuth, async (req, res) => {
   try {
+    const userData = await User.findByPk(req.session.userId, {
+      include: [
+        Pokemon
+      ]
+    })
+
+    const user = userData.get({ plain: true });
+    console.log(user)
+
     res.render('profile', {
+      user,
       front: {
-        homepage: true,
+        profile: true,
         loggedIn: true
       }
     });
