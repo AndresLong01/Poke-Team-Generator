@@ -527,3 +527,27 @@ input[type="submit"]:hover {
     transition: .5s;
   }
 }
+
+.profileWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  padding: 24px 0;
+  width: 100%;
+}
+
+.profileWrapper h1 {
+  margin: 24px 0 48px;
+  width: 100%;
+}
+
+.profileWrapper .pokeCard {
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .profileWrapper h1 {
+    margin: 0 0 24px;
+  }
+}
