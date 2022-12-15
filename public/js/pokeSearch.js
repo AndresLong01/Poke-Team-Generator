@@ -54,21 +54,40 @@ const sendToDatabase = async (e) => {
   const pokeName = e.target.dataset.pokename;
   const image = e.target.dataset.image;
 
-  try {
-    await fetch(`/api/pokemon/`, {
-      method: 'POST',
-      body: JSON.stringify({
-        pokeName,
-        image,
-      }),
-      headers: { 'Content-Type': 'application/json' },
-    });
+  const canAdd = await checkIfExists(pokeName);
 
-    alert(`Successfully added ${pokeName} to your pokemon list. Check them out in your profile!`);
-  }
-  catch (err) {
-    alert(`Something went wrong adding pokemon ${pokeName} to the db. Fire Andres. Error: ${err}`);
+  console.log('canadd!', canAdd);
+
+  if (canAdd) {
+    try {
+      await fetch(`/api/pokemon/`, {
+        method: 'POST',
+        body: JSON.stringify({
+          pokeName,
+          image,
+        }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+  
+      alert(`Successfully added ${pokeName} to your pokemon list. Check them out in your profile!`);
+    }
+    catch (err) {
+      alert(`Something went wrong adding pokemon ${pokeName} to the db. Fire Andres. Error: ${err}`);
+    }
   }
 }
 
 document.querySelector("#searchForm").addEventListener("submit", searchPokemon);
+
+const checkIfExists = async(param) => {
+  const result = await fetch(`/api/pokemon/check-if-exists/${param}`);
+  const data = await result.json();
+
+  console.log('data', data);
+
+  if (!data.addToDb) {
+    alert('You\'ve already added this pokemon!');
+  }
+
+  return data.addToDb;
+};
