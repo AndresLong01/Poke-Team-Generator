@@ -34,6 +34,9 @@ router.get('/profile', withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
     console.log(user)
 
+    // ensure uppercase first letter of username
+    user['username'] = user['username'][0].toUpperCase() + user['username'].slice(1);
+
     res.render('profile', {
       user,
       front: {
