@@ -416,6 +416,7 @@ input[type="submit"]:hover {
   border: none;
   outline: none;
   color: white;
+  cursor: pointer;
 }
 
 #searchForm .fa-search {
@@ -493,6 +494,7 @@ input[type="submit"]:hover {
   position: absolute;
   top: calc(82%);
   left: calc(30%);
+  cursor: pointer;
 }
 
 @media (max-width: 1400px) {
